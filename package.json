@@ -9,6 +9,7 @@
     "update-cdn": "node scripts/update-cdn-urls.mjs",
     "build": "npm run optimize-images && tsc -b && vite build",
     "build:app": "tsc -b && vite build",
+    "build:vercel": "npm run build:app",
     "preview": "vite preview"
   },
   "dependencies": {

@@ -101,6 +101,15 @@ async function main() {
     /* optional */
   }
 
+  try {
+    await fs.access(INPUT_DIR)
+  } catch {
+    console.log(`
+⚠️  Skipping image optimization because ${path.relative(ROOT, INPUT_DIR)} does not exist.`)
+    console.log('   Using existing CDN-backed generated data.')
+    return
+  }
+
   await fs.rm(OUTPUT_DIR, { recursive: true, force: true })
   await fs.mkdir(OUTPUT_DIR, { recursive: true })
 
