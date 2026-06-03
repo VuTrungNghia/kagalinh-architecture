@@ -6,7 +6,5 @@ export const mainNavLinks = [
 ] as const
 
 export const socialLinks = [
-  { label: 'Instagram', href: 'https://instagram.com' },
-  { label: 'Twitter', href: 'https://twitter.com' },
-  { label: 'Behance', href: 'https://behance.net' },
+  { label: 'Behance', href: 'https://www.behance.net/linhlinh83' },
 ]
