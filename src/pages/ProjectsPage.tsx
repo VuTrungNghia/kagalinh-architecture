@@ -1,10 +1,18 @@
 import { motion } from 'framer-motion'
 import { Link } from 'react-router-dom'
+import { OptimizedPicture } from '../components/OptimizedPicture'
+import { Seo } from '../components/Seo'
 import { projects } from '../data/projects'
+import { CARD_SIZES } from '../lib/image'
 
 export function ProjectsPage() {
   return (
     <main className="min-h-screen bg-neutral-950 pt-24 pb-16">
+      <Seo
+        title="Dự án"
+        description="Danh sách dự án kiến trúc và thiết kế nội thất 3D — Kagalinh Architecture."
+        path="/projects"
+      />
       <div className="mx-auto max-w-6xl px-6 sm:px-10">
         <motion.p
           initial={{ opacity: 0, y: 12 }}
@@ -43,11 +51,13 @@ export function ProjectsPage() {
                 className="group block overflow-hidden rounded-lg border border-white/10 bg-neutral-900/50"
               >
                 <div className="relative aspect-[16/10] overflow-hidden">
-                  <img
-                    src={project.slides[0]?.image}
-                    alt=""
-                    className="h-full w-full object-cover transition duration-500 group-hover:scale-105"
-                  />
+                  {project.slides[0] && (
+                    <OptimizedPicture
+                      slide={project.slides[0]}
+                      sizes={CARD_SIZES}
+                      className="transition duration-500 group-hover:scale-105"
+                    />
+                  )}
                   <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent" />
                   <div className="absolute bottom-0 left-0 p-5">
                     <h2 className="font-display text-xl font-semibold text-white sm:text-2xl">

@@ -1,6 +1,9 @@
 import { motion } from 'framer-motion'
 import { Link, Navigate, useParams } from 'react-router-dom'
+import { OptimizedPicture } from '../components/OptimizedPicture'
+import { ProjectJsonLd, Seo } from '../components/Seo'
 import { getProjectById } from '../data/projects'
+import { GALLERY_SIZES, SLIDESHOW_SIZES } from '../lib/image'
 
 export function ProjectDetailPage() {
   const { id } = useParams<{ id: string }>()
@@ -10,8 +13,23 @@ export function ProjectDetailPage() {
     return <Navigate to="/projects" replace />
   }
 
+  const hero = project.slides[0]
+  const origin = typeof window !== 'undefined' ? window.location.origin : ''
+
   return (
     <main className="min-h-screen bg-neutral-950 pt-24 pb-16">
+      <Seo
+        title={project.title}
+        description={project.description}
+        path={`/details/${project.id}`}
+        image={hero?.image}
+      />
+      <ProjectJsonLd
+        name={project.title}
+        description={project.description}
+        url={`${origin}/details/${project.id}`}
+        images={project.slides.map((s) => `${origin}${s.image}`)}
+      />
       <div className="mx-auto max-w-5xl px-6 sm:px-10">
         <Link
           to="/projects"
@@ -21,11 +39,9 @@ export function ProjectDetailPage() {
         </Link>
 
         <div className="relative mt-8 aspect-[21/9] overflow-hidden rounded-lg sm:aspect-[2/1]">
-          <img
-            src={project.slides[0]?.image}
-            alt=""
-            className="h-full w-full object-cover"
-          />
+          {hero && (
+            <OptimizedPicture slide={hero} sizes={SLIDESHOW_SIZES} priority />
+          )}
           <div className="absolute inset-0 bg-black/40" />
           <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/80 to-transparent p-6 sm:p-10">
             <motion.h1
@@ -92,7 +108,9 @@ export function ProjectDetailPage() {
               transition={{ delay: 0.05 * i }}
               className="overflow-hidden rounded-lg border border-white/10"
             >
-              <img src={slide.image} alt="" className="aspect-[4/3] w-full object-cover" />
+              <div className="aspect-[4/3] w-full">
+                <OptimizedPicture slide={slide} sizes={GALLERY_SIZES} />
+              </div>
             </motion.figure>
           ))}
         </div>

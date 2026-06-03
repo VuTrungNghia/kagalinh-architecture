@@ -1,7 +1,10 @@
 import { AnimatePresence, motion } from 'framer-motion'
 import { useCallback, useEffect, useState } from 'react'
-import type { ProjectSlide } from '../data/projects'
+import type { ProjectSlide } from '../data/projects.types'
+import { SLIDESHOW_SIZES, preloadSlide } from '../lib/image'
+import { OptimizedPicture } from './OptimizedPicture'
 import { SlideCaption } from './SlideCaption'
+import { useDragToSlide } from '../hooks/useDragToSlide'
 
 const AUTO_PLAY_MS = 5500
 
@@ -30,6 +33,8 @@ export function ImageSlideshow({
   const goNext = useCallback(() => goTo(index + 1), [goTo, index])
   const goPrev = useCallback(() => goTo(index - 1), [goTo, index])
 
+  const { eventHandlers } = useDragToSlide(goNext, goPrev)
+
   useEffect(() => {
     if (!isActive) return
     const timer = window.setInterval(goNext, AUTO_PLAY_MS)
@@ -44,8 +49,17 @@ export function ImageSlideshow({
   const captionTitle = current.title ?? projectTitle
   const captionSubtitle = current.subtitle ?? projectSubtitle
 
+  useEffect(() => {
+    if (!isActive || slides.length < 2) return
+    const next = slides[(index + 1) % slides.length]
+    preloadSlide(next, 1920)
+  }, [index, isActive, slides])
+
   return (
-    <div className="relative h-full w-full overflow-hidden">
+    <div
+      {...eventHandlers}
+      className="relative h-full w-full overflow-hidden select-none"
+    >
       <AnimatePresence mode="wait" initial={false}>
         <motion.div
           key={`${projectTitle}-${current.id}`}
@@ -55,7 +69,11 @@ export function ImageSlideshow({
           exit={{ opacity: 0, scale: 1.02 }}
           transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
         >
-          <img src={current.image} alt="" className="h-full w-full object-cover" />
+          <OptimizedPicture
+            slide={current}
+            sizes={SLIDESHOW_SIZES}
+            priority={isActive}
+          />
           <div className="absolute inset-0 bg-black/35" />
           <SlideCaption title={captionTitle} subtitle={captionSubtitle} />
         </motion.div>

@@ -1,0 +1,59 @@
+{
+  "67-trich-sai": {
+    "title": "67 Trích Sài",
+    "subtitle": "Thiết kế nội thất · Tầng 4",
+    "description": "Dự án nhà phố tại 67 Trích Sài — không gian sinh hoạt tầng 4, phòng khách và khu vực chức năng.",
+    "location": "Hà Nội",
+    "client": "Gia đình",
+    "services": ["Kiến trúc nội thất", "Thiết kế 3D", "Giám sát thi công"]
+  },
+  "5a-quang-trung": {
+    "title": "5A Quang Trung",
+    "subtitle": "Phòng khách · Bếp",
+    "location": "Hà Nội"
+  },
+  "berriver": {
+    "title": "Berriver",
+    "subtitle": "Phòng khách · Bếp"
+  },
+  "cx2-55": {
+    "title": "CX2-55",
+    "subtitle": "WC Master"
+  },
+  "nguyen-du": {
+    "title": "Nguyễn Dư",
+    "subtitle": "Tầng 4"
+  },
+  "ngd": {
+    "title": "NGD",
+    "subtitle": "Phòng tắm · Nội thất"
+  },
+  "phung-ck": {
+    "title": "Phùng CK",
+    "subtitle": "Đa tầng · PN & WC"
+  },
+  "pb": {
+    "title": "PB",
+    "subtitle": "Tầng 3–5"
+  },
+  "vtd2": {
+    "title": "VTD2",
+    "subtitle": "Tầng 2 & 4"
+  },
+  "d-2512": {
+    "title": "D 2512",
+    "subtitle": "Không gian PA"
+  },
+  "2207": {
+    "title": "Dự án 2207",
+    "subtitle": "Visualization nội thất"
+  },
+  "2023": {
+    "title": "Dự án 2023",
+    "subtitle": "Thiết kế kiến trúc"
+  },
+  "2009": {
+    "title": "Dự án 2009",
+    "subtitle": "Không gian WC · PCG"
+  }
+}
