@@ -30,11 +30,22 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Optimize images & build
+      - name: Check if images exist
+        id: has_images
+        run: |
+          if [ -d "public/images" ] && [ "$(ls -A public/images)" ]; then
+            echo "has_images=true" >> $GITHUB_OUTPUT
+          else
+            echo "has_images=false" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Build with image optimization (local images)
+        if: steps.has_images.outputs.has_images == 'true'
         run: npm run build
-        env:
-          GITHUB_PAGES: 'true'
-          REPO_NAME: ${{ github.event.repository.name }}
+
+      - name: Build without image optimization (CDN mode)
+        if: steps.has_images.outputs.has_images == 'false'
+        run: npm run build:app
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
