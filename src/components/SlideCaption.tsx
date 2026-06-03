@@ -8,7 +8,7 @@ type SlideCaptionProps = {
 export function SlideCaption({ title, subtitle }: SlideCaptionProps) {
   return (
     <div className="pointer-events-none absolute inset-x-0 bottom-0 z-10 p-6 pb-10 sm:p-10 sm:pb-14">
-      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent" />
+      <div className="absolute inset-0 bg-gradient-to-t from-black/45 via-black/15 to-transparent" />
       <motion.div
         className="relative max-w-xl"
         initial={{ opacity: 0, y: 16 }}

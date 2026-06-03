@@ -74,7 +74,7 @@ export function ImageSlideshow({
             sizes={SLIDESHOW_SIZES}
             priority={isActive}
           />
-          <div className="absolute inset-0 bg-black/35" />
+          <div className="absolute inset-0 bg-white/8" />
           <SlideCaption title={captionTitle} subtitle={captionSubtitle} />
         </motion.div>
       </AnimatePresence>

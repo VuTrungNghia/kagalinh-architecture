@@ -42,8 +42,8 @@ export function ProjectDetailPage() {
           {hero && (
             <OptimizedPicture slide={hero} sizes={SLIDESHOW_SIZES} priority />
           )}
-          <div className="absolute inset-0 bg-black/40" />
-          <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/80 to-transparent p-6 sm:p-10">
+          <div className="absolute inset-0 bg-black/20" />
+          <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/55 to-transparent p-6 sm:p-10">
             <motion.h1
               initial={{ opacity: 0, y: 12 }}
               animate={{ opacity: 1, y: 0 }}
