@@ -11,6 +11,7 @@ node_modules
 dist
 public/images-opt
 public/images
+scripts/*
 
 Thumbs.db
 **/Thumbs.db
